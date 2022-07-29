@@ -1,3 +1,48 @@
-.App {
-  text-align: center;
+.app {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+.none{
+    display: none;
+}
+
+
+.board {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+    width: 60%;
+    background-color: grey;
+    padding: 20px 0;
+    margin: 10px 0;
+    border: solid black 1px;
+    border-radius: 5px;
+}
+
+.noteInput {
+    height: auto;
+    width: 80%;
+    max-width: 500px;
+    border: solid black 1px;
+    border-radius: 3px;
+}
+
+.noteButton{
+    margin: 0 3px;
+    height: 24px;
+    border: solid black 1px;
+    border-radius: 3px;
+
+}
+
+.myNote{
+    height: auto;
+    width: 400px;
+   max-width: 500px;
+    border: solid black 1px;
+    border-radius: 3px;
+    background-color: white;
 }
