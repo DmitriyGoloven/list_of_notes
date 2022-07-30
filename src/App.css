@@ -1,6 +1,5 @@
 .app {
     display: flex;
-
     align-items: center;
     justify-content: center;
 }
@@ -8,13 +7,12 @@
     display: none;
 }
 
-
 .board {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 60%;
-    width: 60%;
+    width: 80%;
     background-color: grey;
     padding: 20px 0;
     margin: 10px 0;
@@ -24,7 +22,7 @@
 
 .noteInput {
     height: auto;
-    width: 80%;
+    width: 100%;
     max-width: 500px;
     border: solid black 1px;
     border-radius: 3px;
@@ -40,9 +38,12 @@
 
 .myNote{
     height: auto;
-    width: 400px;
+    width: 100%;
    max-width: 500px;
     border: solid black 1px;
     border-radius: 3px;
     background-color: white;
+}
+li{
+    display: block;
 }
