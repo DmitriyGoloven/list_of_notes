@@ -29,50 +29,50 @@ function App() {
         setNotes(notes.filter((el) => el.id !== id))
     }
 
+    const moveUp = (index) => {
+        let notesList = [...notes]
+        let item = notesList[index - 1]
+        notesList[index - 1] = notesList[index]
+        notesList[index] = item
+        setNotes(notesList)
+    }
 
-    const listItem = notes.map((note, index) => {
-        return <>
-            <li style={{margin: "5px 0 "}} key={note.id}>
-                <textarea className={"myNote"} defaultValue={note.note}/>
-                <button className={"noteButton"} onClick={() => delNote(note.id)}>del</button>
-                <button className={index !== 0 ? "noteButton" : "none"}>up</button>
-                <button className={index === notes.length - 1 ? "none" : "noteButton"}>down</button>
-            </li>
-        </>
-
-    })
-
-
-
+    const moveDown = (index) => {
+        let notesList = [...notes]
+        let item = notesList[index + 1]
+        notesList[index + 1] = notesList[index]
+        notesList[index] = item
+        setNotes(notesList)
+    }
 
     return (
         <div className={"app"}>
             <div className={"board"}>
 
-                <ul>
-                    {listItem}
+                <ul key={notes.length}>
+                    {notes.map((note, index) => (<li key={note.id} style={{margin: "5px 0 "}}>
+                        <textarea className={"myNote"} defaultValue={note.note}/>
+                        <button className={"noteButton"}
+                                onClick={() => delNote(note.id)}>del
+                        </button>
+                        <button className={index !== 0 ? "noteButton" : "none"}
+                                onClick={() => moveUp(index)}>up
+                        </button>
+                        <button className={index === notes.length - 1 ? "none" : "noteButton"}
+                                onClick={() => moveDown(index)}>down
+                        </button>
+                    </li>))}
 
                     <li key={'add'}><input className={"noteInput"}
-                               type={"text"}
-                               value={note}
-                               placeholder={"Your note"}
-                               onChange={(event) => {
-                                   setNote(event.target.value)
-                               }}/>
+                                           type={"text"}
+                                           value={note}
+                                           placeholder={"Your note"}
+                                           onChange={(event) => {
+                                               setNote(event.target.value)
+                                           }}/>
                         <button className={"noteButton"} onClick={addNote}>ADD</button>
                     </li>
                 </ul>
-
-                {/*<ul>*/}
-                {/*    {notes.map((note) => {*/}
-                {/*        return <li>{note.note}</li>*/}
-                {/*    })}*/}
-
-                {/*</ul>*/}
-                {/*{notes.map((note)=>{*/}
-                {/*    return <div>{note.note}</div>*/}
-                {/*})}*/}
-
 
             </div>
         </div>

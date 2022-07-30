@@ -11,8 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60%;
-    width: 80%;
+    width: 90%;
     background-color: grey;
     padding: 20px 0;
     margin: 10px 0;
@@ -21,29 +20,33 @@
 }
 
 .noteInput {
-    height: auto;
-    width: 100%;
-    max-width: 500px;
+    height: 40px;
+    width: 600px;
     border: solid black 1px;
     border-radius: 3px;
 }
 
 .noteButton{
+    width: 50px;
     margin: 0 3px;
     height: 24px;
     border: solid black 1px;
     border-radius: 3px;
+}
+.noteButton:hover{
+    color: red;
 
 }
 
 .myNote{
     height: auto;
-    width: 100%;
-   max-width: 500px;
+    width: 600px;
     border: solid black 1px;
     border-radius: 3px;
-    background-color: white;
+    background-color: aquamarine;
 }
 li{
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
