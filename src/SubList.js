@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {v4 as uuidv4} from "uuid";
 
 
-const OneNote = ({notes, id, index, setNotes}) => {
+const SubList = ({notes, id, index, setNotes}) => {
 
     const [note, setNote] = useState(" ")
     const [list, setList] = useState(notes.find(note => note.id === id).subList)
@@ -78,7 +78,8 @@ const OneNote = ({notes, id, index, setNotes}) => {
 
                 {list.map((note, index) => {
                     return (<li key={note.id} style={{margin: "5px 0 "}}>
-                            <textarea className={"myNote"} defaultValue={note.note}/>
+                            <textarea className={"myNoteList"} defaultValue={note.note}/>
+                            <div className={"butGroup"}>
                             <button className={"noteButton"}
                                     onClick={() => delNote(note.id)}>del
                             </button>
@@ -98,10 +99,9 @@ const OneNote = ({notes, id, index, setNotes}) => {
                             <button className={note.subList ? "noteButton" : "none"}
                                     onClick={() => delSublist(note.id, index)}>- SL
                             </button>
-
-                            <br/>
+                            </div>
                             <ul>
-                                {note.subList && <OneNote notes={list}
+                                {note.subList && <SubList notes={list}
                                                           id={note.id}
                                                           index={index}
                                                           setNotes={setList}/>
@@ -119,4 +119,4 @@ const OneNote = ({notes, id, index, setNotes}) => {
 
     );
 }
-export default OneNote;
+export default SubList;

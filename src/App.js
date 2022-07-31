@@ -1,7 +1,7 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import {v4 as uuidv4} from 'uuid';
-import OneNote from "./OneNote";
+import SubList from "./SubList";
 
 function App() {
 
@@ -72,15 +72,17 @@ function App() {
     }
 
     return (
-        <div className={"app"}>
+
+<div className={"app"}>
             <div className={"board"}>
+                <h1>List of notes</h1>
 
                 <ul key={notes.length}>
 
                     {notes.map((note, index) => {
                         return (<li key={note.id} style={{margin: "5px 0 "}}>
                                 <textarea className={"myNote"} defaultValue={note.note}/>
-
+<div className={"butGroup"}>
                                 <button className={note.subList ? "none" : "noteButton"}
                                         onClick={() => addSublist(note.id, index)}>+ SL
                                 </button>
@@ -100,10 +102,9 @@ function App() {
                                 <button className={index === notes.length - 1 ? "none" : "noteButton"}
                                         onClick={() => moveDown(index)}>down
                                 </button>
-
-                                <br/>
+</div>
                                 <ul>
-                                {note.subList && <OneNote notes={notes}
+                                {note.subList && <SubList notes={notes}
                                                           id={note.id}
                                                           index={index}
                                                           setNotes={setNotes}
@@ -118,7 +119,7 @@ function App() {
                 </ul>
 
             </div>
-        </div>
+</div>
     );
 }
 
