@@ -7,13 +7,13 @@ const OneNote = ({notes, id, index, setNotes}) => {
     const [note, setNote] = useState(" ")
     const [list, setList] = useState(notes.find(note => note.id === id).subList)
 
-   useEffect(()=>{
+    useEffect(() => {
 
-       const listNotes = [...notes]
-       listNotes[index].subList = list
-       setNotes(listNotes)
+        const listNotes = [...notes]
+        listNotes[index].subList = list
+        setNotes(listNotes)
 
-   },[ list])
+    }, [list])
 
     const input = () => (
         <li>
@@ -60,6 +60,18 @@ const OneNote = ({notes, id, index, setNotes}) => {
         setList(notesList)
     }
 
+    const addSublist = (id, index) => {
+        const listNotes = [...list]
+        listNotes[index].subList = []
+        setList(listNotes)
+    }
+
+    const delSublist = (id, index) => {
+        const listNotes = [...list]
+        delete listNotes[index].subList
+        setList(listNotes)
+    }
+
     return (
         <div>
             <ul key={list.length}>
@@ -78,6 +90,24 @@ const OneNote = ({notes, id, index, setNotes}) => {
                             <button className={index === list.length - 1 ? "none" : "noteButton"}
                                     onClick={() => moveDown(index)}>down
                             </button>
+
+                            <button className={note.subList ? "none" : "noteButton"}
+                                    onClick={() => addSublist(note.id, index)}>+ SL
+                            </button>
+
+                            <button className={note.subList ? "noteButton" : "none"}
+                                    onClick={() => delSublist(note.id, index)}>- SL
+                            </button>
+
+                            <br/>
+                            <ul>
+                                {note.subList && <OneNote notes={list}
+                                                          id={note.id}
+                                                          index={index}
+                                                          setNotes={setList}/>
+                                }
+                            </ul>
+
                         </li>
                     )
                 })}
