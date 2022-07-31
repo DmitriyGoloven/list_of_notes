@@ -77,29 +77,30 @@ const SubList = ({notes, id, index, setNotes}) => {
             <ul key={list.length}>
 
                 {list.map((note, index) => {
-                    return (<li key={note.id} style={{margin: "5px 0 "}}>
-                            <textarea className={"myNoteList"} defaultValue={note.note}/>
+                    return (<li key={note.id}>
+                            <textarea readOnly className={"myNoteList"} defaultValue={note.note}/>
                             <div className={"butGroup"}>
-                            <button className={"noteButton"}
-                                    onClick={() => delNote(note.id)}>del
-                            </button>
+                                <button className={"noteButton"}
+                                        onClick={() => delNote(note.id)}>Remove
+                                </button>
 
-                            <button className={index !== 0 ? "noteButton" : "none"}
-                                    onClick={() => moveUp(index)}>up
-                            </button>
+                                <button className={index !== 0 ? "noteButton" : "none"}
+                                        onClick={() => moveUp(index)}>UP
+                                </button>
 
-                            <button className={index === list.length - 1 ? "none" : "noteButton"}
-                                    onClick={() => moveDown(index)}>down
-                            </button>
+                                <button className={index === list.length - 1 ? "none" : "noteButton"}
+                                        onClick={() => moveDown(index)}>DOWN
+                                </button>
 
-                            <button className={note.subList ? "none" : "noteButton"}
-                                    onClick={() => addSublist(note.id, index)}>+ SL
-                            </button>
+                                <button className={note.subList ? "none" : "noteButton"}
+                                        onClick={() => addSublist(note.id, index)}>Add Sublist
+                                </button>
 
-                            <button className={note.subList ? "noteButton" : "none"}
-                                    onClick={() => delSublist(note.id, index)}>- SL
-                            </button>
+                                <button className={note.subList ? "noteButton" : "none"}
+                                        onClick={() => delSublist(note.id, index)}>Remove Sublist
+                                </button>
                             </div>
+
                             <ul>
                                 {note.subList && <SubList notes={list}
                                                           id={note.id}
@@ -111,12 +112,9 @@ const SubList = ({notes, id, index, setNotes}) => {
                         </li>
                     )
                 })}
-
                 {input()}
             </ul>
-
         </div>
-
     );
 }
 export default SubList;

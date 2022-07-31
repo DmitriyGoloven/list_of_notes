@@ -73,43 +73,45 @@ function App() {
 
     return (
 
-<div className={"app"}>
+        <div className={"app"}>
             <div className={"board"}>
                 <h1>List of notes</h1>
 
                 <ul key={notes.length}>
 
                     {notes.map((note, index) => {
-                        return (<li key={note.id} style={{margin: "5px 0 "}}>
-                                <textarea className={"myNote"} defaultValue={note.note}/>
-<div className={"butGroup"}>
-                                <button className={note.subList ? "none" : "noteButton"}
-                                        onClick={() => addSublist(note.id, index)}>+ SL
-                                </button>
+                        return (<li key={note.id}>
+                                <textarea readOnly className={"myNote"} defaultValue={note.note}/>
 
-                                <button className={note.subList ? "noteButton" : "none"}
-                                        onClick={() => delSublist(note.id, index)}>- SL
-                                </button>
+                                <div className={"butGroup"}>
+                                    <button className={note.subList ? "none" : "noteButton"}
+                                            onClick={() => addSublist(note.id, index)}>Add Sublist
+                                    </button>
 
-                                <button className={"noteButton"}
-                                        onClick={() => delNote(note.id)}>del
-                                </button>
+                                    <button className={note.subList ? "noteButton" : "none"}
+                                            onClick={() => delSublist(note.id, index)}>Remove Sublist
+                                    </button>
 
-                                <button className={index !== 0 ? "noteButton" : "none"}
-                                        onClick={() => moveUp(index)}>up
-                                </button>
+                                    <button className={"noteButton"}
+                                            onClick={() => delNote(note.id)}>Remove
+                                    </button>
 
-                                <button className={index === notes.length - 1 ? "none" : "noteButton"}
-                                        onClick={() => moveDown(index)}>down
-                                </button>
-</div>
+                                    <button className={index !== 0 ? "noteButton" : "none"}
+                                            onClick={() => moveUp(index)}>UP
+                                    </button>
+
+                                    <button className={index === notes.length - 1 ? "none" : "noteButton"}
+                                            onClick={() => moveDown(index)}>DOWN
+                                    </button>
+                                </div>
+
                                 <ul>
-                                {note.subList && <SubList notes={notes}
-                                                          id={note.id}
-                                                          index={index}
-                                                          setNotes={setNotes}
+                                    {note.subList && <SubList notes={notes}
+                                                              id={note.id}
+                                                              index={index}
+                                                              setNotes={setNotes}
 
-                                />}
+                                    />}
                                 </ul>
                             </li>
                         )
@@ -119,7 +121,7 @@ function App() {
                 </ul>
 
             </div>
-</div>
+        </div>
     );
 }
 

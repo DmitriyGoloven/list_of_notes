@@ -1,4 +1,4 @@
-.app{
+.app {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -11,7 +11,7 @@
 
 }
 
-.none{
+.none {
     display: none;
 }
 
@@ -26,51 +26,56 @@
     border-radius: 3px;
 }
 
-.noteButton{
+.noteButton {
     margin: auto 3px;
-    width: 50px;
+    width: auto;
     height: 24px;
     border: solid black 1px;
     border-radius: 3px;
 }
-.noteButton:hover{
+
+.noteButton:hover {
     color: red;
-    font-weight: bold;
-    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.5)
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.5);
+    transform: scale(1.1);
 }
+
 .noteButton:active {
     background-color: grey;
     box-shadow: 0 2px darkslategray;
     transform: translateY(1px);
 }
 
-.butGroup{
+.butGroup {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     margin: 2px 2px;
 }
-.myNote{
+
+.myNote {
     min-width: 300px;
     border: solid black 1px;
     border-radius: 3px;
     background-color: lightskyblue;
 }
 
-.myNoteList{
+.myNoteList {
     height: auto;
     min-width: 350px;
-    border: solid  black 1px;
+    border: solid black 1px;
     border-radius: 3px;
     background-color: lightsteelblue;
 
 }
-ul,li{
+
+ul, li {
     list-style-type: none;
     margin: 2px 2px;
 }
-li{
+
+li {
     display: flex;
     flex-wrap: wrap;
 
