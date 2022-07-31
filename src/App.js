@@ -1,6 +1,7 @@
 import './App.css';
 import {useEffect, useState} from "react";
 import {v4 as uuidv4} from 'uuid';
+import OneNote from "./OneNote";
 
 function App() {
 
@@ -58,12 +59,16 @@ function App() {
         </li>)
 
 
-    const addSublist = (id) => {
-        const element = notes.filter((el) => el.id === id)
-        console.log(typeof element, element)
-        element.push({id: 44444444, note: 'hjhjhjhjh'})
+    const addSublist = (id, index) => {
+        const listNotes = [...notes]
+        listNotes[index].subList = []
+        setNotes(listNotes)
+    }
 
-
+    const delSublist = (id, index) => {
+        const listNotes = [...notes]
+        delete listNotes[index].subList
+        setNotes(listNotes)
     }
 
     return (
@@ -71,21 +76,35 @@ function App() {
             <div className={"board"}>
 
                 <ul key={notes.length}>
+
                     {notes.map((note, index) => {
                         return (<li key={note.id} style={{margin: "5px 0 "}}>
                                 <textarea className={"myNote"} defaultValue={note.note}/>
+
                                 <button className={"noteButton"}
-                                        onClick={() => addSublist(note.id)}>+ SL
+                                        onClick={() => addSublist(note.id, index)}>+ SL
                                 </button>
+
+                                <button className={"noteButton"}
+                                        onClick={() => delSublist(note.id, index)}>- SL
+                                </button>
+
                                 <button className={"noteButton"}
                                         onClick={() => delNote(note.id)}>del
                                 </button>
+
                                 <button className={index !== 0 ? "noteButton" : "none"}
                                         onClick={() => moveUp(index)}>up
                                 </button>
+
                                 <button className={index === notes.length - 1 ? "none" : "noteButton"}
                                         onClick={() => moveDown(index)}>down
                                 </button>
+
+                                <br/>
+                                <ul>
+                                {note.subList && <OneNote subList={note.subList} />}
+                                </ul>
                             </li>
                         )
                     })}
