@@ -45,33 +45,52 @@ function App() {
         setNotes(notesList)
     }
 
+    const input = () => (
+        <li>
+            <input className={"noteInput"}
+                   type={"text"}
+                   value={note}
+                   placeholder={"Your note"}
+                   onChange={(event) => {
+                       setNote(event.target.value)
+                   }}/>
+            <button className={"noteButton"} onClick={addNote}>ADD</button>
+        </li>)
+
+
+    const addSublist = (id) => {
+        const element = notes.filter((el) => el.id === id)
+        console.log(typeof element, element)
+        element.push({id: 44444444, note: 'hjhjhjhjh'})
+
+
+    }
+
     return (
         <div className={"app"}>
             <div className={"board"}>
 
                 <ul key={notes.length}>
-                    {notes.map((note, index) => (<li key={note.id} style={{margin: "5px 0 "}}>
-                        <textarea className={"myNote"} defaultValue={note.note}/>
-                        <button className={"noteButton"}
-                                onClick={() => delNote(note.id)}>del
-                        </button>
-                        <button className={index !== 0 ? "noteButton" : "none"}
-                                onClick={() => moveUp(index)}>up
-                        </button>
-                        <button className={index === notes.length - 1 ? "none" : "noteButton"}
-                                onClick={() => moveDown(index)}>down
-                        </button>
-                    </li>))}
+                    {notes.map((note, index) => {
+                        return (<li key={note.id} style={{margin: "5px 0 "}}>
+                                <textarea className={"myNote"} defaultValue={note.note}/>
+                                <button className={"noteButton"}
+                                        onClick={() => addSublist(note.id)}>+ SL
+                                </button>
+                                <button className={"noteButton"}
+                                        onClick={() => delNote(note.id)}>del
+                                </button>
+                                <button className={index !== 0 ? "noteButton" : "none"}
+                                        onClick={() => moveUp(index)}>up
+                                </button>
+                                <button className={index === notes.length - 1 ? "none" : "noteButton"}
+                                        onClick={() => moveDown(index)}>down
+                                </button>
+                            </li>
+                        )
+                    })}
 
-                    <li key={'add'}><input className={"noteInput"}
-                                           type={"text"}
-                                           value={note}
-                                           placeholder={"Your note"}
-                                           onChange={(event) => {
-                                               setNote(event.target.value)
-                                           }}/>
-                        <button className={"noteButton"} onClick={addNote}>ADD</button>
-                    </li>
+                    {input()}
                 </ul>
 
             </div>
