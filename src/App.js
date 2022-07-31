@@ -81,11 +81,11 @@ function App() {
                         return (<li key={note.id} style={{margin: "5px 0 "}}>
                                 <textarea className={"myNote"} defaultValue={note.note}/>
 
-                                <button className={"noteButton"}
+                                <button className={note.subList ? "none" : "noteButton"}
                                         onClick={() => addSublist(note.id, index)}>+ SL
                                 </button>
 
-                                <button className={"noteButton"}
+                                <button className={note.subList ? "noteButton" : "none"}
                                         onClick={() => delSublist(note.id, index)}>- SL
                                 </button>
 
@@ -103,7 +103,12 @@ function App() {
 
                                 <br/>
                                 <ul>
-                                {note.subList && <OneNote subList={note.subList} />}
+                                {note.subList && <OneNote notes={notes}
+                                                          id={note.id}
+                                                          index={index}
+                                                          setNotes={setNotes}
+
+                                />}
                                 </ul>
                             </li>
                         )
