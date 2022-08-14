@@ -27,12 +27,13 @@
 }
 
 .noteButton {
-    margin: auto 3px;
+    margin: auto 1px;
     width: auto;
     height: 24px;
     border: solid black 1px;
     border-radius: 3px;
     background-color: lightsteelblue;
+    font-weight: bold;
 }
 
 .noteButton:hover {
@@ -60,14 +61,16 @@
     border: solid black 1px;
     border-radius: 3px;
     background-color: lightskyblue;
+    cursor: pointer;
 }
 
 .myNoteList {
-    height: auto;
-    min-width: 350px;
-    border: solid black 1px;
+    min-width: 300px;
+    border: solid blueviolet 1px;
     border-radius: 3px;
     background-color: lightsteelblue;
+    cursor: pointer;
+
 
 }
 
@@ -79,7 +82,21 @@ ul, li {
 li {
     display: flex;
     flex-wrap: wrap;
-
-
 }
+
+.completed{
+    min-width: 300px;
+    border: solid black 1px;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: line-through;
+    opacity: 30%;
+}
+input{
+    background-color: lightgray;
+}
+
+
+
+
 

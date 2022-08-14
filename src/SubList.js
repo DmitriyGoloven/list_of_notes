@@ -32,12 +32,20 @@ const SubList = ({notes, id, index, setNotes}) => {
         if (note.trim() !== '') {
             const myNote = {
                 id: uuidv4(),
-                note: note
+                note: note,
+                class : 'myNoteList'
             }
             setList((list) => [...list, myNote])
             setNote('')
 
         } else alert('Note is empty!')
+    }
+
+    const doneSubNote = (note, id)=>{
+        note.class === 'myNoteList' ? note.class = 'completed' : note.class = 'myNoteList'
+        const notesList = [...list]
+        notesList[id] = note
+        setList(notesList)
     }
 
     const delNote = (id) => {
@@ -74,30 +82,38 @@ const SubList = ({notes, id, index, setNotes}) => {
 
     return (
         <div>
-            <ul key={list.length}>
+            <ul key={list.length} style={{marginTop:"10px"}}>
 
                 {list.map((note, index) => {
                     return (<li key={note.id}>
-                            <textarea readOnly className={"myNoteList"} defaultValue={note.note}/>
+
+                            <input type={'checkbox'}
+                                   readOnly checked={note.class !== 'myNoteList'}
+                                   disabled={note.class === 'myNoteList'}
+                                   style={{width:"22px", opacity:"20%"}}/>
+                            <textarea readOnly
+                                      className={note.class}
+                                      defaultValue={note.note}
+                                      onClick={()=>doneSubNote(note, index)}/>
                             <div className={"butGroup"}>
                                 <button className={"noteButton"}
-                                        onClick={() => delNote(note.id)}>Remove
+                                        onClick={() => delNote(note.id)}>×
                                 </button>
 
                                 <button className={index !== 0 ? "noteButton" : "none"}
-                                        onClick={() => moveUp(index)}>UP
+                                        onClick={() => moveUp(index)}>⇑
                                 </button>
 
                                 <button className={index === list.length - 1 ? "none" : "noteButton"}
-                                        onClick={() => moveDown(index)}>DOWN
+                                        onClick={() => moveDown(index)}>⇓
                                 </button>
 
                                 <button className={note.subList ? "none" : "noteButton"}
-                                        onClick={() => addSublist(note.id, index)}>Add Sublist
+                                        onClick={() => addSublist(note.id, index)}>+SL
                                 </button>
 
                                 <button className={note.subList ? "noteButton" : "none"}
-                                        onClick={() => delSublist(note.id, index)}>Remove Sublist
+                                        onClick={() => delSublist(note.id, index)}>-SL
                                 </button>
                             </div>
 
